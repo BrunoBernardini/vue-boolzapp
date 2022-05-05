@@ -1,5 +1,92 @@
+/* ------{GENERAL}------ */
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body{
+  font-family: 'Lato', sans-serif;
+  background-color: #d9dbd5;
+}
+
+#app{
+  height: 100vh;
+  position: relative;
+}
+
+header{
+  height: 15.3vh;
+  background-color: #009688;
+}
+
+/* ------{CONTAINER}------ */
+
+.container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  height: 95vh;
+}
+
+.container .top .left,
+.container .body aside{
+  width: 35%;
+}
+
+.container .top .right,
+.container .body .mainChat{
+  width: 65%;
+}
+
+/* Top */
+
+.container .top{
+  display: flex;
+  width: 100%;
+  height: 70px;
+  background-color: #eaeaea;
+}
+
+.container .top .left{
+  height: 100%;
+  border-right: 1px solid lightgray;
+}
+
+.container .top .right{
+  height: 100%;
+}
+
+/* Body */
+
+.container .body{
+  display: flex;
+  width: 100%;
+  height: calc(100% - 70px);
+}
+
+.container .body aside .notificationsBanner{
+  width: 100%;
+  height: 80px;
+  background-color: #8edafc;
+}
+
+.container .body aside .search{
+  width: 100%;
+  height: 50px;
+  background-color: #fafafa;
+}
+
+.container .body aside .chatList{
+  width: 100%;
+  height: calc(100% - 130px);
+  background-color: green;
+}
+
+.container .body .mainChat{
+  height: 100%;
+  background-color: orange;
 }
