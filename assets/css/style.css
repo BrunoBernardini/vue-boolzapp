@@ -21,6 +21,10 @@ header{
   background-color: #009688;
 }
 
+.proPic img{
+  width: 100%;
+}
+
 /* ------{CONTAINER}------ */
 
 .container{
@@ -51,6 +55,31 @@ header{
   background-color: #eaeaea;
 }
 
+.container .top .proPic{
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.container .top .account{
+  display: flex;
+  align-items: center;
+}
+
+.container .top .account .info{
+  padding-left: 15px;
+}
+
+.container .top .account .name{
+  font-size: 16px;
+}
+
+.container .top .account .lastSeen{
+  font-size: 14px;
+  color: gray;
+}
+
 .container .top .left{
   height: 100%;
   border-right: 1px solid lightgray;
@@ -58,6 +87,20 @@ header{
 
 .container .top .right{
   height: 100%;
+}
+
+.container .top .left,
+.container .top .right{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px 0 10px;
+}
+
+.container .top .icons i{
+  color: #b1b1b1;
+  font-size: 22px;
+  margin: 9px;
 }
 
 /* Body */
