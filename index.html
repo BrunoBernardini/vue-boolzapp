@@ -32,10 +32,12 @@
 
         <div class="right">
           <div class="account">
-            <div class="proPic"><img src="./assets/img/avatar_1.jpg" alt=""></div>
+            <div class="proPic">
+              <img :src="`./assets/img/avatar${contacts[activeIndex].avatar}.jpg`" alt="">
+            </div>
             <div class="info">
-              <div class="name">Michele</div>
-              <span class="lastSeen">Ultimo accesso oggi alle 12:00</span>
+              <div class="name">{{contacts[activeIndex].name}}</div>
+              <span class="lastSeen">Ultimo accesso oggi alle {{contacts[activeIndex].messages[contacts[activeIndex].messages.length-1].date}}</span>
             </div>
           </div>
           <div class="icons">
@@ -68,8 +70,11 @@
 
             <div
               v-for="(contact, index) in contacts"
-              class="chat">
-              <div class="proPic"><img :src="`./assets/img/avatar${contact.avatar}.jpg`" :alt="contact.name"></div>
+              class="chat"
+              @click="activeIndex = index">
+              <div class="proPic">
+                <img :src="`./assets/img/avatar${contact.avatar}.jpg`" :alt="contact.name">
+              </div>
               <div class="info">
                 <div class="topText">
                   <div class="name">{{contact.name}}</div>
@@ -84,13 +89,12 @@
 
         <section class="mainChat">
           <div class="messages">
-            <div class="message sent">
-              <p>Hai portato a spasso il cane?</p>
-              <div class="time">15:30</div>
-            </div>
-            <div class="message received">
-              <p>Tutto fatto!</p>
-              <div class="time">16:15</div>
+            <div
+              v-for="currentMessage in contacts[activeIndex].messages"
+              class="message"
+              :class="currentMessage.status">
+              <p>{{currentMessage.message}}</p>
+              <div class="time">{{currentMessage.date}}</div>
             </div>
           </div>
           <div class="keyboard">
