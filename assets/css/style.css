@@ -224,12 +224,57 @@ header{
 
 .container .body .mainChat .messages{
   height: calc(100% - 70px);
+  padding: 5% 10%;
+  overflow-y: scroll;
 }
+
+.container .body .mainChat .messages .message{
+  display: flex;
+  width: 100%;
+}
+
+.container .body .mainChat .messages .message.sent{
+  flex-direction: row-reverse;
+}
+
+.container .body .mainChat .messages .message.received{
+  flex-direction: row;
+}
+
+.container .body .mainChat .messages .message .content{
+  padding: 14px 5px 5px 15px;
+  border-radius: 10px;
+  min-width: 313px;
+  width: max-content;
+  max-width: 450px;
+  margin-bottom: 10px;
+}
+
+.container .body .mainChat .messages .message .content p{
+  margin-bottom: 5px;
+}
+
+.container .body .mainChat .messages .message .content .time{
+  font-size: 10px;
+  width: 100%;
+  text-align: right;
+  color: #bdbabf;
+}
+
+.container .body .mainChat .messages .message.sent .content{
+  background-color: #d5f9ba;
+}
+
+.container .body .mainChat .messages .message.received .content{
+  background-color: white;
+}
+
+
 
 .container .body .mainChat .keyboard{
   display: flex;
   align-items: center;
-  height: 70px;
+  height: 80px;
   background-color: #f3eeea;
 }
 
@@ -242,7 +287,7 @@ header{
 
 .container .body .mainChat .keyboard input{
   width: 80%;
-  height: 50px;
+  height: 72.5%;
   border: 1px solid white;
   padding: 15px;
   font-size: 14px;
