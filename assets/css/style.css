@@ -31,7 +31,7 @@ body{
   height: 95vh;
 }
 
-/* Top */
+/* -------={Container - Top}=------- */
 
 .container .top{
   display: flex;
@@ -94,13 +94,15 @@ body{
   margin: 9px;
 }
 
-/* Body */
+/* -------={Container - Body}=------- */
 
 .container .body{
   display: flex;
   width: 100%;
   height: calc(100% - 70px);
 }
+
+/* -={Body - notificationsBanner}=- */
 
 .container .body aside .notificationsBanner{
   display: flex;
@@ -127,6 +129,8 @@ body{
   font-size: 14px;
   color: gray;
 }
+
+/* -={Body - search}=- */
 
 .container .body aside .search{
   width: 100%;
@@ -159,6 +163,8 @@ body{
   padding-left: 10px;
   border-color: transparent;
 }
+
+/* -={Body - chatList}=- */
 
 .container .body aside .chatList{
   width: 100%;
@@ -213,6 +219,8 @@ body{
   color: #bdbabf;
 }
 
+/* -={Body - mainChat}=- */
+
 .container .body .mainChat{
   display: flex;
   flex-direction: column;
@@ -227,47 +235,37 @@ body{
 }
 
 .container .body .mainChat .messages .message{
-  display: flex;
-  width: 100%;
-}
-
-.container .body .mainChat .messages .message.sent{
-  flex-direction: row-reverse;
-}
-
-.container .body .mainChat .messages .message.received{
-  flex-direction: row;
-}
-
-.container .body .mainChat .messages .message .content{
-  padding: 14px 5px 5px 15px;
+  padding: 14px 15px 5px 15px;
   border-radius: 10px;
   min-width: 313px;
   width: max-content;
   max-width: 450px;
   margin-bottom: 10px;
+  clear: both;
 }
 
-.container .body .mainChat .messages .message .content p{
+.container .body .mainChat .messages .message.sent{
+  float: right;
+  background-color: #d5f9ba;
+}
+
+.container .body .mainChat .messages .message.received{
+  float: left;
+  background-color: white;
+}
+
+.container .body .mainChat .messages .message p{
   margin-bottom: 5px;
 }
 
-.container .body .mainChat .messages .message .content .time{
+.container .body .mainChat .messages .message .time{
   font-size: 10px;
   width: 100%;
   text-align: right;
   color: #bdbabf;
 }
 
-.container .body .mainChat .messages .message.sent .content{
-  background-color: #d5f9ba;
-}
-
-.container .body .mainChat .messages .message.received .content{
-  background-color: white;
-}
-
-
+/* -={Body - keyboard}=- */
 
 .container .body .mainChat .keyboard{
   display: flex;
