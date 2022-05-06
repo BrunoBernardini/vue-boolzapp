@@ -11,6 +11,10 @@ Note:
 const app = new Vue({
   el: "#app",
   data: {
+    user: {
+      name: "Sofia",
+      avatar: "_io"
+    },
     contacts: [
       {
         name: 'Michele',
@@ -176,7 +180,7 @@ const app = new Vue({
     ],
   },
   methods: {
-    
+
   }
 })
 

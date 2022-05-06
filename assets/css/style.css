@@ -180,6 +180,7 @@ header{
   height: 80px;
   padding: 10px 10px 10px 20px;
   border-bottom: 1px solid lightgray;
+  overflow: hidden;
 }
 
 .container .body aside .chatList .chat:hover{
@@ -195,22 +196,25 @@ header{
 }
 
 .container .body aside .chatList .chat .info{
-  display: flex;
-  justify-content: space-between;
   width: calc(100% - 80px);
-  height: 100%;
 }
 
-.container .body aside .chatList .chat .info .text .name{
+.container .body aside .chatList .chat .topText{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.container .body aside .chatList .chat .name{
   font-size: 18px;
 }
 
-.container .body aside .chatList .chat .info .text .lastMessage{
+.container .body aside .chatList .chat .lastMessage{
   font-size: 14px;
   color: #bdbabf;
 }
 
-.container .body aside .chatList .chat .info .time{
+.container .body aside .chatList .chat .time{
   font-size: 12px;
   color: #bdbabf;
 }

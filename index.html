@@ -21,7 +21,7 @@
 
         <div class="left">
           <div class="account">
-            <div class="proPic"><img src="./assets/img/avatar_io.jpg" alt=""></div>
+            <div class="proPic"><img :src="`./assets/img/avatar${user.avatar}.jpg`" alt=""></div>
             <div class="name">Sofia</div>
           </div>
           <div class="icons">
@@ -68,18 +68,18 @@
           <div class="chatList">
 
             <div
-              v-for="contact in contacts"
+              v-for="(contact, index) in contacts"
               class="chat">
               <div class="proPic"><img :src="`./assets/img/avatar${contact.avatar}.jpg`" :alt="contact.name"></div>
               <div class="info">
-                <div class="text">
+                <div class="topText">
                   <div class="name">{{contact.name}}</div>
-                  <span class="lastMessage">{{contact.messages[contact.messages.length-1].message}}</span>
+                  <div class="time">{{contact.messages[contact.messages.length-1].date}}</div>
                 </div>
-                <div class="time">{{contact.messages[contact.messages.length-1].date}}</div>
+                <span class="lastMessage">{{contact.messages[contact.messages.length-1].message}}</span>
               </div>
             </div>
-            
+
           </div>
         </aside>
 
