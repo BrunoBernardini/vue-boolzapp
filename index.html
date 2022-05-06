@@ -15,28 +15,23 @@
 <body>
 
   <div id="app">
-
     <header></header>
     <div class="container">
-
       <div class="top">
 
         <div class="left">
-
           <div class="account">
             <div class="proPic"><img src="./assets/img/avatar_io.jpg" alt=""></div>
             <div class="name">Sofia</div>
           </div>
-
           <div class="icons">
             <i class="fa-solid fa-circle-notch"></i>
             <i class="fa-solid fa-message"></i>
             <i class="fa-solid fa-ellipsis-vertical"></i>
           </div>
-
         </div>
-        <div class="right">
 
+        <div class="right">
           <div class="account">
             <div class="proPic"><img src="./assets/img/avatar_1.jpg" alt=""></div>
             <div class="info">
@@ -44,7 +39,6 @@
               <span class="lastSeen">Ultimo accesso oggi alle 12:00</span>
             </div>
           </div>
-
           <div class="icons">
             <i class="fa-solid fa-magnifying-glass"></i>
             <i class="fa-solid fa-paperclip"></i>
@@ -53,7 +47,6 @@
         </div>
 
       </div>
-
       <div class="body">
         <aside>
 
@@ -74,19 +67,20 @@
 
           <div class="chatList">
 
-            <div class="chat">
-              <div class="proPic"><img src="./assets/img/avatar_1.jpg" alt=""></div>
+            <div
+              v-for="contact in contacts"
+              class="chat">
+              <div class="proPic"><img :src="`./assets/img/avatar${contact.avatar}.jpg`" :alt="contact.name"></div>
               <div class="info">
                 <div class="text">
-                  <div class="name">Michele</div>
-                  <span class="lastMessage">Ultimo messaggio inviato</span>
+                  <div class="name">{{contact.name}}</div>
+                  <span class="lastMessage">{{contact.messages[contact.messages.length-1].message}}</span>
                 </div>
-                <div class="time">12:00</div>
+                <div class="time">{{contact.messages[contact.messages.length-1].date}}</div>
               </div>
             </div>
-
+            
           </div>
-
         </aside>
 
         <section class="mainChat">
@@ -94,12 +88,6 @@
             <div class="message sent">
               <div class="content">
                 <p>Hai portato a spasso il cane?</p>
-                <div class="time">15:30</div>
-              </div>
-            </div>
-            <div class="message sent">
-              <div class="content">
-                <p>Ricordati di stendere i panni</p>
                 <div class="time">15:30</div>
               </div>
             </div>
