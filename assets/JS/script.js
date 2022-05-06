@@ -192,9 +192,30 @@ const app = new Vue({
       }
     ],
     activeIndex: 0,
+    newMessage: "",
   },
   methods: {
-
+    addMessage(status){
+      if(this.newMessage.length >= 1 && (status==="sent" || status==="received")){
+        this.contacts[this.activeIndex].messages.push({
+          date: this.getTimeString(),
+          message: this.newMessage,
+          status: status,
+        })
+        this.newMessage = "";
+      }
+    },
+    autoReply(){
+      const self = this;
+      setTimeout(function(){
+        self.newMessage = "Ok!";
+        self.addMessage("received");
+      }, 1000)
+    },
+    getTimeString(){
+      const today = new Date();
+      return `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
+    }
   }
 })
 
