@@ -187,6 +187,10 @@ body{
   background-color: #e9ebeb;
 }
 
+.container .body aside .chatList .chat.active{
+  background-color: #dfdfdf;
+}
+
 .container .body aside .chatList .chat .proPic{
   width: 60px;
   height: 60px;
@@ -203,6 +207,13 @@ body{
   display: flex;
   width: 100%;
   justify-content: space-between;
+}
+
+.container .body aside .chatList .chat:hover .lastMessage,
+.container .body aside .chatList .chat:hover .time,
+.container .body aside .chatList .chat.active .lastMessage,
+.container .body aside .chatList .chat.active .time{
+  color: gray;
 }
 
 .container .body aside .chatList .chat .name{

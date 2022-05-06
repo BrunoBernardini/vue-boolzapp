@@ -71,6 +71,7 @@
             <div
               v-for="(contact, index) in contacts"
               class="chat"
+              :class="{'active' : activeIndex == index}"
               @click="activeIndex = index">
               <div class="proPic">
                 <img :src="`./assets/img/avatar${contact.avatar}.jpg`" :alt="contact.name">

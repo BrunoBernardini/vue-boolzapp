@@ -191,7 +191,7 @@ const app = new Vue({
         ],
       }
     ],
-    activeIndex: 7,
+    activeIndex: 0,
   },
   methods: {
 
