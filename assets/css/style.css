@@ -216,6 +216,35 @@ header{
 }
 
 .container .body .mainChat{
+  display: flex;
+  flex-direction: column;
   height: 100%;
   background-image: url("../img/mine.jpg");
+}
+
+.container .body .mainChat .messages{
+  height: calc(100% - 70px);
+}
+
+.container .body .mainChat .keyboard{
+  display: flex;
+  align-items: center;
+  height: 70px;
+  background-color: #f3eeea;
+}
+
+.container .body .mainChat .keyboard i{
+  font-size: 24px;
+  width: 10%;
+  text-align: center;
+  color: gray;
+}
+
+.container .body .mainChat .keyboard input{
+  width: 80%;
+  height: 50px;
+  border: 1px solid white;
+  padding: 15px;
+  font-size: 14px;
+  border-radius: 5px;
 }
