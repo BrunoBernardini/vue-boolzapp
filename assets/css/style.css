@@ -181,6 +181,7 @@ body{
   padding: 10px 10px 10px 20px;
   border-bottom: 1px solid lightgray;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .container .body aside .chatList .chat:hover{
@@ -252,6 +253,7 @@ body{
   width: max-content;
   max-width: 450px;
   margin-bottom: 10px;
+  overflow-wrap: break-word;
   clear: both;
 }
 

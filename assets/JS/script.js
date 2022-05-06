@@ -193,6 +193,7 @@ const app = new Vue({
     ],
     activeIndex: 0,
     newMessage: "",
+    searchedUser: ""
   },
   methods: {
     addMessage(status){
@@ -205,16 +206,19 @@ const app = new Vue({
         this.newMessage = "";
       }
     },
-    autoReply(){
+    autoReply(reply){
       const self = this;
       setTimeout(function(){
-        self.newMessage = "Ok!";
+        self.newMessage = reply;
         self.addMessage("received");
       }, 1000)
     },
     getTimeString(){
       const today = new Date();
       return `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
+    },
+    checkChat(username){
+      return ((this.searchedUser.trim() === "") || (username.toLowerCase().includes(this.searchedUser.toLowerCase())));
     }
   }
 })

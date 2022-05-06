@@ -62,28 +62,33 @@
           <div class="search">
             <div class="searchBar">
               <i class="fa-solid fa-magnifying-glass"></i>
-              <input type="text" placeholder="Cerca o inizia una nuova chat">
+              <input 
+                type="text" 
+                v-model="searchedUser"
+                placeholder="Cerca o inizia una nuova chat">
             </div>
           </div>
 
           <div class="chatList">
 
-            <div
-              v-for="(contact, index) in contacts"
-              class="chat"
-              :class="{'active' : activeIndex == index}"
-              @click="activeIndex = index">
-              <div class="proPic">
-                <img :src="`./assets/img/avatar${contact.avatar}.jpg`" :alt="contact.name">
-              </div>
-              <div class="info">
-                <div class="topText">
-                  <div class="name">{{contact.name}}</div>
-                  <div class="time">{{contact.messages[contact.messages.length-1].date}}</div>
+            <template v-for="(contact, index) in contacts">
+              <div
+                v-if="checkChat(contact.name)"
+                class="chat"
+                :class="{'active' : activeIndex == index}"
+                @click="activeIndex = index">
+                <div class="proPic">
+                  <img :src="`./assets/img/avatar${contact.avatar}.jpg`" :alt="contact.name">
                 </div>
-                <span class="lastMessage">{{contact.messages[contact.messages.length-1].message}}</span>
+                <div class="info">
+                  <div class="topText">
+                    <div class="name">{{contact.name}}</div>
+                    <div class="time">{{contact.messages[contact.messages.length-1].date}}</div>
+                  </div>
+                  <span class="lastMessage">{{contact.messages[contact.messages.length-1].message}}</span>
+                </div>
               </div>
-            </div>
+            </template>
 
           </div>
         </aside>
@@ -102,7 +107,7 @@
             <i class="fa-regular fa-face-smile"></i>
             <input 
               v-model.trim="newMessage"
-              @keyUp.enter="addMessage('sent'); autoReply()"
+              @keyUp.enter="addMessage('sent'); autoReply('Ok!')"
               type="text"
               placeholder="Scrivi un messaggio">
             <i class="fa-solid fa-microphone"></i>
