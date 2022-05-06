@@ -1,4 +1,4 @@
-/* ------{GENERAL}------ */
+/* =============={GENERAL}============== */
 
 *{
   margin: 0;
@@ -7,31 +7,25 @@
 }
 
 body{
-  font-family: 'Lato', sans-serif;
-  background-color: #d9dbd5;
-}
-
-#app{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
-  position: relative;
-}
-
-header{
-  height: 15.3vh;
-  background-color: #009688;
+  font-family: 'Lato', sans-serif;
+  background:
+    linear-gradient(#009688 0,
+                    #009688 15vh,
+                    #d9dbd5 15vh,
+                    #d9dbd5 100vh);
 }
 
 .proPic img{
   width: 100%;
 }
 
-/* ------{CONTAINER}------ */
+/* =============={CONTAINER}============== */
 
 .container{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 80vw;
   min-width: 950px;
   height: 95vh;
