@@ -65,6 +65,7 @@
               <input 
                 type="text" 
                 v-model="searchedUser"
+                @keyUp="filterUsers"
                 placeholder="Cerca o inizia una nuova chat">
             </div>
           </div>
@@ -73,7 +74,7 @@
 
             <template v-for="(contact, index) in contacts">
               <div
-                v-if="checkChat(contact.name)"
+                v-if="contact.visible"
                 class="chat"
                 :class="{'active' : activeIndex == index}"
                 @click="activeIndex = index">

@@ -217,7 +217,12 @@ const app = new Vue({
       const today = new Date();
       return `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
     },
-    checkChat(username){
+    filterUsers(){
+      for(let contact of this.contacts){
+        contact.visible = this.checkContact(contact.name);
+      }
+    },
+    checkContact(username){
       return ((this.searchedUser.trim() === "") || (username.toLowerCase().includes(this.searchedUser.toLowerCase())));
     }
   }
