@@ -52,7 +52,8 @@ body{
   align-items: center;
 }
 
-.container .top .account .info{
+.container .top .account .info,
+.container .top .account>.name{
   padding-left: 15px;
 }
 
@@ -287,11 +288,11 @@ body{
 }
 
 .container .body .mainChat .messages .message.sent .dropdown-menu{
-  box-shadow: 0px 7px 4px 5px #d5f9ba;
+  text-shadow: 0px 2px 1px #d5f9ba;
 }
 
 .container .body .mainChat .messages .message.received .dropdown-menu{
-  box-shadow: 0px 0px 4px 5px white;
+  text-shadow: 0px 2px 1px white;
 }
 
 .container .body .mainChat .messages .message .dropdown-menu:hover{
@@ -305,6 +306,7 @@ body{
 
 @keyframes dropdown-btn-in {
   0%{
+    text-shadow: none;
     right: 0;
   }
   100%{

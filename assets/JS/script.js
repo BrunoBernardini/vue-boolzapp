@@ -242,6 +242,7 @@ const app = new Vue({
       if(lastDate === "") return "non disponibile";
       else return `${lastDate.split(" ")[0]} alle ${lastDate.split(" ")[1]}`
     },
+    
     /* ========{Funzioni ausiliarie}======== */
 
     getCurrentTimeString(){
