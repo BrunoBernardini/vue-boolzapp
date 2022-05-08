@@ -200,7 +200,7 @@ const app = new Vue({
     addMessage(status){
       if(this.newMessage.length >= 1 && (status==="sent" || status==="received")){
         this.contacts[this.activeIndex].messages.push({
-          date: this.getTimeString(),
+          date: this.getCurrentTimeString(),
           message: this.newMessage,
           status: status,
         })
@@ -229,10 +229,22 @@ const app = new Vue({
       this.contacts[this.activeIndex].messages.splice(messageIndex, 1);
       this.menuMessageIndex = -1;
     },
-
+    getLastMessage(userIndex){
+      if(this.contacts[userIndex].messages.length === 0) return "Nessun messaggio";
+      else return this.contacts[userIndex].messages[this.contacts[userIndex].messages.length-1].message;
+    },
+    getLastDate(userIndex){
+      if(this.contacts[userIndex].messages.length === 0) return "";
+      else return this.contacts[userIndex].messages[this.contacts[userIndex].messages.length-1].date;
+    },
+    getLastSeen(userIndex){
+      const lastDate = this.getLastDate(userIndex);
+      if(lastDate === "") return "non disponibile";
+      else return `${lastDate.split(" ")[0]} alle ${lastDate.split(" ")[1]}`
+    },
     /* ========{Funzioni ausiliarie}======== */
 
-    getTimeString(){
+    getCurrentTimeString(){
       const today = new Date();
       return `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
     },

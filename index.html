@@ -14,120 +14,118 @@
 </head>
 <body>
 
-  <div id="app">
-    <div class="container">
-      <div class="top">
+  <div class="container" id="app">
+    <div class="top">
 
-        <div class="left">
-          <div class="account">
-            <div class="proPic"><img :src="`./assets/img/avatar${user.avatar}.jpg`" alt=""></div>
-            <div class="name">Sofia</div>
+      <div class="left">
+        <div class="account">
+          <div class="proPic"><img :src="`./assets/img/avatar${user.avatar}.jpg`" alt=""></div>
+          <div class="name">{{user.name}}</div>
+        </div>
+        <div class="icons">
+          <i class="fa-solid fa-circle-notch"></i>
+          <i class="fa-solid fa-message"></i>
+          <i class="fa-solid fa-ellipsis-vertical"></i>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="account">
+          <div class="proPic">
+            <img :src="`./assets/img/avatar${contacts[activeIndex].avatar}.jpg`" alt="">
           </div>
-          <div class="icons">
-            <i class="fa-solid fa-circle-notch"></i>
-            <i class="fa-solid fa-message"></i>
-            <i class="fa-solid fa-ellipsis-vertical"></i>
+          <div class="info">
+            <div class="name">{{contacts[activeIndex].name}}</div>
+            <span class="lastSeen">Ultimo accesso: {{getLastSeen(activeIndex)}}</span>
+          </div>
+        </div>
+        <div class="icons">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <i class="fa-solid fa-paperclip"></i>
+          <i class="fa-solid fa-ellipsis-vertical"></i>
+        </div>
+      </div>
+
+    </div>
+    <div class="body">
+      <aside>
+
+        <div class="notificationsBanner">
+          <i class="fa-solid fa-bell-slash"></i>
+          <div class="bannerText">
+            <div class="title">Ricevi notifiche di nuovi messaggi</div>
+            <a href="#">Attiva notifiche desktop</a>
           </div>
         </div>
 
-        <div class="right">
-          <div class="account">
-            <div class="proPic">
-              <img :src="`./assets/img/avatar${contacts[activeIndex].avatar}.jpg`" alt="">
-            </div>
-            <div class="info">
-              <div class="name">{{contacts[activeIndex].name}}</div>
-              <span class="lastSeen">Ultimo accesso oggi alle {{contacts[activeIndex].messages[contacts[activeIndex].messages.length-1].date}}</span>
-            </div>
-          </div>
-          <div class="icons">
+        <div class="search">
+          <div class="searchBar">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <i class="fa-solid fa-paperclip"></i>
-            <i class="fa-solid fa-ellipsis-vertical"></i>
+            <input 
+              type="text" 
+              v-model="searchedUser"
+              @keyUp="filterUsers"
+              placeholder="Cerca o inizia una nuova chat">
           </div>
         </div>
 
-      </div>
-      <div class="body">
-        <aside>
+        <div class="chatList">
 
-          <div class="notificationsBanner">
-            <i class="fa-solid fa-bell-slash"></i>
-            <div class="bannerText">
-              <div class="title">Ricevi notifiche di nuovi messaggi</div>
-              <a href="#">Attiva notifiche desktop</a>
-            </div>
-          </div>
-
-          <div class="search">
-            <div class="searchBar">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <input 
-                type="text" 
-                v-model="searchedUser"
-                @keyUp="filterUsers"
-                placeholder="Cerca o inizia una nuova chat">
-            </div>
-          </div>
-
-          <div class="chatList">
-
-            <template v-for="(contact, index) in contacts">
-              <div
-                v-if="contact.visible"
-                class="chat"
-                :class="{'active' : activeIndex == index}"
-                @click="activeIndex = index">
-                <div class="proPic">
-                  <img :src="`./assets/img/avatar${contact.avatar}.jpg`" :alt="contact.name">
-                </div>
-                <div class="info">
-                  <div class="topText">
-                    <div class="name">{{contact.name}}</div>
-                    <div class="time">{{contact.messages[contact.messages.length-1].date}}</div>
-                  </div>
-                  <span class="lastMessage">{{contact.messages[contact.messages.length-1].message}}</span>
-                </div>
-              </div>
-            </template>
-
-          </div>
-        </aside>
-
-        <section class="mainChat">
-          <div class="messages">
+          <template v-for="(contact, index) in contacts">
             <div
-              v-for="(currentMessage, index) in contacts[activeIndex].messages"
-              class="message"
-              :class="currentMessage.status"
-              @mouseleave="toggleMenu(-1)">
-              <p>{{currentMessage.message}}</p>
-              <div class="dropdown-menu">
-                <i
-                  class="fa-solid fa-chevron-down dropdown-btn"
-                  @click="toggleMenu(index)"></i>
-                <div
-                  class="dropdown-box"
-                  :class="{'active' : index === menuMessageIndex}">
-                  <div
-                    class="menu-option"
-                    @click="deleteMessage(index)">Elimina messaggio</div>
-                </div>
+              v-if="contact.visible"
+              class="chat"
+              :class="{'active' : activeIndex == index}"
+              @click="activeIndex = index">
+              <div class="proPic">
+                <img :src="`./assets/img/avatar${contact.avatar}.jpg`" :alt="contact.name">
               </div>
-              <div class="time">{{currentMessage.date}}</div>
+              <div class="info">
+                <div class="topText">
+                  <div class="name">{{contact.name}}</div>
+                  <div class="time">{{getLastDate(index)}}</div>
+                </div>
+                <span class="lastMessage">{{getLastMessage(index)}}</span>
+              </div>
             </div>
+          </template>
+
+        </div>
+      </aside>
+
+      <section class="mainChat">
+        <div class="messages">
+          <div
+            v-for="(currentMessage, index) in contacts[activeIndex].messages"
+            class="message"
+            :class="currentMessage.status"
+            @mouseleave="toggleMenu(-1)">
+            <p>{{currentMessage.message}}</p>
+            <div class="dropdown-menu">
+              <i
+                class="fa-solid fa-chevron-down dropdown-btn"
+                @click="toggleMenu(index)"></i>
+              <div
+                class="dropdown-box"
+                :class="{'active' : index === menuMessageIndex}">
+                <div
+                  class="menu-option"
+                  @click="deleteMessage(index)">Elimina messaggio</div>
+              </div>
+            </div>
+            <div class="time">{{currentMessage.date}}</div>
           </div>
-          <div class="keyboard">
-            <i class="fa-regular fa-face-smile"></i>
-            <input 
-              v-model.trim="newMessage"
-              @keyUp.enter="addMessage('sent'); autoReply('Ok!')"
-              type="text"
-              placeholder="Scrivi un messaggio">
-            <i class="fa-solid fa-microphone"></i>
-          </div>
-        </section>
-      </div>
+        </div>
+        <div class="keyboard">
+          <i class="fa-regular fa-face-smile"></i>
+          <input 
+            v-model.trim="newMessage"
+            @keyUp.enter="addMessage('sent'); autoReply('Ok!')"
+            type="text"
+            placeholder="Scrivi un messaggio">
+          <i class="fa-solid fa-microphone"></i>
+        </div>
+      </section>
     </div>
   </div>
   <script src="./assets/JS/script.js"></script>
