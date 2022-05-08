@@ -193,7 +193,8 @@ const app = new Vue({
     ],
     activeIndex: 0,
     newMessage: "",
-    searchedUser: ""
+    searchedUser: "",
+    menuMessageIndex: -1
   },
   methods: {
     addMessage(status){
@@ -213,14 +214,27 @@ const app = new Vue({
         self.addMessage("received");
       }, 1000)
     },
-    getTimeString(){
-      const today = new Date();
-      return `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
-    },
     filterUsers(){
       for(let contact of this.contacts){
         contact.visible = this.checkContact(contact.name);
       }
+    },
+    toggleMenu(value){
+      if((value === -1) || (value === this.menuMessageIndex)){
+        this.menuMessageIndex = -1
+      }
+      else this.menuMessageIndex = value;
+    },
+    deleteMessage(messageIndex){
+      this.contacts[this.activeIndex].messages.splice(messageIndex, 1);
+      this.menuMessageIndex = -1;
+    },
+
+    /* ========{Funzioni ausiliarie}======== */
+
+    getTimeString(){
+      const today = new Date();
+      return `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
     },
     checkContact(username){
       return ((this.searchedUser.trim() === "") || (username.toLowerCase().includes(this.searchedUser.toLowerCase())));

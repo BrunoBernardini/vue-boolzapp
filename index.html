@@ -97,10 +97,23 @@
         <section class="mainChat">
           <div class="messages">
             <div
-              v-for="currentMessage in contacts[activeIndex].messages"
+              v-for="(currentMessage, index) in contacts[activeIndex].messages"
               class="message"
-              :class="currentMessage.status">
+              :class="currentMessage.status"
+              @mouseleave="toggleMenu(-1)">
               <p>{{currentMessage.message}}</p>
+              <div class="dropdown-menu">
+                <i
+                  class="fa-solid fa-chevron-down dropdown-btn"
+                  @click="toggleMenu(index)"></i>
+                <div
+                  class="dropdown-box"
+                  :class="{'active' : index === menuMessageIndex}">
+                  <div
+                    class="menu-option"
+                    @click="deleteMessage(index)">Elimina messaggio</div>
+                </div>
+              </div>
               <div class="time">{{currentMessage.date}}</div>
             </div>
           </div>
