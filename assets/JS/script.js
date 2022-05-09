@@ -194,7 +194,7 @@ const app = new Vue({
     activeIndex: 0,
     newMessage: "",
     searchedUser: "",
-    reply: "no",
+    reply: "Ok!",
     emojis: [
       "👍",
       "❤️",
