@@ -321,7 +321,6 @@ body{
 }
 
 .dropdown-menu .dropdown-box{
-  display: none;
   position: absolute;
   top: 17px;
   right: 0;
@@ -331,10 +330,6 @@ body{
   background-color: #eaeaea;
   z-index: 9;
   width: max-content;
-}
-
-.dropdown-menu .dropdown-box.active{
-  display: block;
 }
 
 .dropdown-menu .dropdown-box .menu-option{

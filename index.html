@@ -125,7 +125,7 @@
                 @click="toggleMessageMenu(index)"></i>
               <div
                 class="dropdown-box"
-                :class="{'active' : index === messageMenuIndex}">
+                v-if="index === messageMenuIndex">
                 <div
                   class="menu-option"
                   @click="deleteMessage(index)">Elimina messaggio</div>
