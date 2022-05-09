@@ -80,7 +80,9 @@
               v-if="contact.visible"
               class="chat"
               :class="{'active' : activeIndex == index}"
-              @click="activeIndex = index">
+              @click="closeEmojiMenu(index);
+                      activeIndex = index;
+                      newMessage = ''">
               <div class="proPic">
                 <img
                   :src="`./assets/img/avatar${contact.avatar}.jpg`"
@@ -105,15 +107,15 @@
             v-for="(currentMessage, index) in contacts[activeIndex].messages"
             class="message"
             :class="currentMessage.status"
-            @mouseleave="toggleMenu(-1)">
+            @mouseleave="toggleMessageMenu(-1)">
             <p>{{currentMessage.message}}</p>
             <div class="dropdown-menu">
               <i
                 class="fa-solid fa-chevron-down dropdown-btn"
-                @click="toggleMenu(index)"></i>
+                @click="toggleMessageMenu(index)"></i>
               <div
                 class="dropdown-box"
-                :class="{'active' : index === menuMessageIndex}">
+                :class="{'active' : index === messageMenuIndex}">
                 <div
                   class="menu-option"
                   @click="deleteMessage(index)">Elimina messaggio</div>
@@ -123,13 +125,29 @@
           </div>
         </div>
         <div class="keyboard">
-          <i class="fa-regular fa-face-smile"></i>
+          <div class="side-btn emoji-btn">
+            <i
+              class="fa-regular fa-face-smile"
+              @click="toggleEmojiValue = !toggleEmojiValue"></i>
+            <div
+              v-if="toggleEmojiValue"
+              class="emoji-tab">
+              <span
+                v-for="(emoji, index) in emojis" 
+                class="emoji"
+                @click="newMessage += emoji">{{emoji}}</span>
+            </div>
+          </div>
           <input 
             v-model.trim="newMessage"
-            @keyUp.enter="addMessage('sent'); autoReply()"
+            @keyUp.enter="addMessage('sent');
+                          autoReply();
+                          toggleEmojiValue = false"
             type="text"
             placeholder="Scrivi un messaggio">
-          <i class="fa-solid fa-microphone"></i>
+          <div class="side-btn">
+            <i class="fa-solid fa-microphone"></i>
+          </div>
         </div>
       </section>
     </div>

@@ -194,8 +194,17 @@ const app = new Vue({
     activeIndex: 0,
     newMessage: "",
     searchedUser: "",
-    menuMessageIndex: -1,
-    reply: "Ok!"
+    reply: "Ok!",
+    emojis: [
+      "👍",
+      "❤️",
+      "😂",
+      "😲",
+      "😢",
+      "🙏"
+    ],
+    messageMenuIndex: -1,
+    toggleEmojiValue: false,
   },
   methods: {
     addMessage(status){
@@ -220,15 +229,18 @@ const app = new Vue({
         contact.visible = this.checkContact(contact.name);
       }
     },
-    toggleMenu(value){
-      if((value === -1) || (value === this.menuMessageIndex)){
-        this.menuMessageIndex = -1
+    toggleMessageMenu(value){
+      if((value === -1) || (value === this.messageMenuIndex)){
+        this.messageMenuIndex = -1
       }
-      else this.menuMessageIndex = value;
+      else this.messageMenuIndex = value;
+    },
+    closeEmojiMenu(contactIndex){
+      if(contactIndex !== this.activeIndex) this.toggleEmojiValue = false;
     },
     deleteMessage(messageIndex){
       this.contacts[this.activeIndex].messages.splice(messageIndex, 1);
-      this.menuMessageIndex = -1;
+      this.messageMenuIndex = -1;
     },
     getLastMessage(contact){
       if(contact.messages.length === 0) return "Nessun messaggio";
