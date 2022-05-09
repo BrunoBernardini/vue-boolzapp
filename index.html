@@ -151,9 +151,9 @@
           </div>
           <input 
             v-model.trim="newMessage"
+            @keyUp="toggleEmojiValue = false"
             @keyUp.enter="addMessage('sent');
-                          autoReply();
-                          toggleEmojiValue = false"
+                          autoReply()"
             type="text"
             placeholder="Scrivi un messaggio">
           <div class="side-btn">
