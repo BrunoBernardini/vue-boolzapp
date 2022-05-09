@@ -210,7 +210,7 @@ const app = new Vue({
     addMessage(status){
       if(this.newMessage.length >= 1 && (status==="sent" || status==="received")){
         this.contacts[this.activeIndex].messages.push({
-          date: this.getCurrentTimeString(),
+          date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
           message: this.newMessage,
           status: status,
         });
@@ -253,15 +253,11 @@ const app = new Vue({
     getLastSeen(contact){
       const lastDate = this.getLastDate(contact);
       if(lastDate === "") return "non disponibile";
-      else return `${lastDate.split(" ")[0]} alle ${lastDate.split(" ")[1]}`
+      else return `${dayjs(lastDate).format("DD/MM/YYYY")} alle ${dayjs(lastDate).format("HH:mm:ss")}`
     },
 
     /* ========{Funzioni ausiliarie}======== */
 
-    getCurrentTimeString(){
-      const today = new Date();
-      return `${today.getDate()}/${today.getMonth()+1}/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
-    },
     checkContact(username){
       return ((this.searchedUser.trim() === "") || (username.toLowerCase().includes(this.searchedUser.toLowerCase())));
     }
