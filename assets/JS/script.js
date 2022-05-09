@@ -194,7 +194,8 @@ const app = new Vue({
     activeIndex: 0,
     newMessage: "",
     searchedUser: "",
-    menuMessageIndex: -1
+    menuMessageIndex: -1,
+    reply: "Ok!"
   },
   methods: {
     addMessage(status){
@@ -203,16 +204,16 @@ const app = new Vue({
           date: this.getCurrentTimeString(),
           message: this.newMessage,
           status: status,
-        })
+        });
         this.newMessage = "";
       }
     },
-    autoReply(reply){
+    autoReply(){
       const self = this;
       setTimeout(function(){
-        self.newMessage = reply;
+        self.newMessage = self.reply;
         self.addMessage("received");
-      }, 1000)
+      }, 1000);
     },
     filterUsers(){
       for(let contact of this.contacts){
@@ -229,20 +230,20 @@ const app = new Vue({
       this.contacts[this.activeIndex].messages.splice(messageIndex, 1);
       this.menuMessageIndex = -1;
     },
-    getLastMessage(userIndex){
-      if(this.contacts[userIndex].messages.length === 0) return "Nessun messaggio";
-      else return this.contacts[userIndex].messages[this.contacts[userIndex].messages.length-1].message;
+    getLastMessage(contact){
+      if(contact.messages.length === 0) return "Nessun messaggio";
+      else return contact.messages[contact.messages.length-1].message;
     },
-    getLastDate(userIndex){
-      if(this.contacts[userIndex].messages.length === 0) return "";
-      else return this.contacts[userIndex].messages[this.contacts[userIndex].messages.length-1].date;
+    getLastDate(contact){
+      if(contact.messages.length === 0) return "";
+      else return contact.messages[contact.messages.length-1].date;
     },
-    getLastSeen(userIndex){
-      const lastDate = this.getLastDate(userIndex);
+    getLastSeen(contact){
+      const lastDate = this.getLastDate(contact);
       if(lastDate === "") return "non disponibile";
       else return `${lastDate.split(" ")[0]} alle ${lastDate.split(" ")[1]}`
     },
-    
+
     /* ========{Funzioni ausiliarie}======== */
 
     getCurrentTimeString(){
@@ -254,4 +255,3 @@ const app = new Vue({
     }
   }
 })
-

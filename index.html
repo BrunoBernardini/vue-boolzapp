@@ -19,7 +19,9 @@
 
       <div class="left">
         <div class="account">
-          <div class="proPic"><img :src="`./assets/img/avatar${user.avatar}.jpg`" alt=""></div>
+          <div class="proPic"><img
+            :src="`./assets/img/avatar${user.avatar}.jpg`"
+            :alt="user.avatar"></div>
           <div class="name">{{user.name}}</div>
         </div>
         <div class="icons">
@@ -32,11 +34,13 @@
       <div class="right">
         <div class="account">
           <div class="proPic">
-            <img :src="`./assets/img/avatar${contacts[activeIndex].avatar}.jpg`" alt="">
+            <img
+              :src="`./assets/img/avatar${contacts[activeIndex].avatar}.jpg`"
+              :alt="contacts[activeIndex].avatar">
           </div>
           <div class="info">
             <div class="name">{{contacts[activeIndex].name}}</div>
-            <span class="lastSeen">Ultimo accesso: {{getLastSeen(activeIndex)}}</span>
+            <span class="lastSeen">Ultimo accesso: {{getLastSeen(contacts[activeIndex])}}</span>
           </div>
         </div>
         <div class="icons">
@@ -78,14 +82,16 @@
               :class="{'active' : activeIndex == index}"
               @click="activeIndex = index">
               <div class="proPic">
-                <img :src="`./assets/img/avatar${contact.avatar}.jpg`" :alt="contact.name">
+                <img
+                  :src="`./assets/img/avatar${contact.avatar}.jpg`"
+                  :alt="contact.name">
               </div>
               <div class="info">
                 <div class="topText">
                   <div class="name">{{contact.name}}</div>
-                  <div class="time">{{getLastDate(index)}}</div>
+                  <div class="time">{{getLastDate(contact)}}</div>
                 </div>
-                <span class="lastMessage">{{getLastMessage(index)}}</span>
+                <span class="lastMessage">{{getLastMessage(contact)}}</span>
               </div>
             </div>
           </template>
@@ -120,7 +126,7 @@
           <i class="fa-regular fa-face-smile"></i>
           <input 
             v-model.trim="newMessage"
-            @keyUp.enter="addMessage('sent'); autoReply('Ok!')"
+            @keyUp.enter="addMessage('sent'); autoReply()"
             type="text"
             placeholder="Scrivi un messaggio">
           <i class="fa-solid fa-microphone"></i>
