@@ -22,9 +22,11 @@
 </head>
 <body>
 
+  <!-- Contenitore & App Vue -->
   <div class="container" id="app">
+    <!-- Parte superiore -->
     <div class="top">
-
+      <!-- Lato sinistro -->
       <div class="left">
         <div class="account">
           <div class="proPic"><img
@@ -38,7 +40,7 @@
           <i class="fa-solid fa-ellipsis-vertical"></i>
         </div>
       </div>
-
+      <!-- Lato destro -->
       <div class="right">
         <div class="account">
           <div class="proPic">
@@ -57,11 +59,12 @@
           <i class="fa-solid fa-ellipsis-vertical"></i>
         </div>
       </div>
-
     </div>
+    <!-- Parte principale -->
     <div class="body">
+      <!-- Colonna laterale -->
       <aside>
-
+        <!-- Sezione banner notifiche -->
         <div class="notificationsBanner">
           <i class="fa-solid fa-bell-slash"></i>
           <div class="bannerText">
@@ -69,7 +72,7 @@
             <a href="#">Attiva notifiche desktop</a>
           </div>
         </div>
-
+        <!-- Sezione ricerca utenti -->
         <div class="search">
           <div class="searchBar">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -80,9 +83,8 @@
               placeholder="Cerca o inizia una nuova chat">
           </div>
         </div>
-
+        <!-- Sezione lista chat -->
         <div class="chatList">
-
           <template v-for="(contact, index) in contacts">
             <div
               v-if="contact.visible"
@@ -105,11 +107,11 @@
               </div>
             </div>
           </template>
-
         </div>
       </aside>
-
+      <!-- Chat principale -->
       <section class="mainChat">
+        <!-- Sezione messaggi -->
         <div class="messages">
           <div
             v-for="(currentMessage, index) in contacts[activeIndex].messages"
@@ -132,6 +134,7 @@
             <div class="time">{{currentMessage.date}}</div>
           </div>
         </div>
+        <!-- Sezione tastiera -->
         <div class="keyboard">
           <div class="side-btn emoji-btn">
             <i
