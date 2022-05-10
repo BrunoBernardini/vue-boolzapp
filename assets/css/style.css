@@ -384,6 +384,7 @@ body{
   overflow-x: scroll;
   height: 60px;
   background-color: #eaeaea;
+  box-shadow: 2px 2px 10px black;
   border-radius: 10px;
   font-size: 24px;
 }
