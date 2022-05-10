@@ -376,7 +376,7 @@ body{
 .container .body .mainChat .keyboard .side-btn.emoji-btn .emoji-tab{
   position: absolute;
   top: -100px;
-  left: 0;
+  left: 38px;
   display: flex;
   flex-wrap: wrap;
   width: max-content;
