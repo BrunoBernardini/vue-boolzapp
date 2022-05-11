@@ -161,6 +161,7 @@
           </div>
           <input 
             v-model.trim="newMessage"
+            @click="toggleEmojiValue = false"
             @keyUp="toggleEmojiValue = false"
             @keyUp.enter="addMessage('sent');
                           autoReply()"
