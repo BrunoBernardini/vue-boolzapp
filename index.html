@@ -50,7 +50,7 @@
           </div>
           <div class="info">
             <div class="name">{{contacts[activeIndex].name}}</div>
-            <span class="lastSeen">Ultimo accesso: {{getLastSeen(contacts[activeIndex])}}</span>
+            <span class="lastSeen">Ultimo accesso{{getLastSeen(contacts[activeIndex])}}</span>
           </div>
         </div>
         <div class="icons">
@@ -122,13 +122,23 @@
             <div class="dropdown-menu">
               <i
                 class="fa-solid fa-chevron-down dropdown-btn"
+                :class="{'active':index === messageMenuIndex}"
                 @click="toggleMessageMenu(index)"></i>
               <div
                 class="dropdown-box"
                 v-if="index === messageMenuIndex">
                 <div
                   class="menu-option"
-                  @click="deleteMessage(index)">Elimina messaggio</div>
+                  @click="">
+                  <span>Info</span> 
+                  <i class="fa-solid fa-circle-info"></i>
+                </div>
+                <div
+                  class="menu-option delete"
+                  @click="deleteMessage(index)">
+                  <span>Elimina</span>
+                  <i class="fa-regular fa-trash-can"></i>
+                </div>
               </div>
             </div>
             <div class="time">{{currentMessage.date}}</div>
@@ -146,7 +156,7 @@
               <div
                 v-for="(emoji, index) in emojis" 
                 class="emoji"
-                @click="newMessage += emoji">{{emoji}}</div>
+                @click="newMessage += emoji"><span>{{emoji}}</span></div>
             </div>
           </div>
           <input 

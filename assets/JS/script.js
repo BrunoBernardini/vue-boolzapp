@@ -252,8 +252,8 @@ const app = new Vue({
     },
     getLastSeen(contact){
       const lastDate = this.getLastDate(contact);
-      if(lastDate === "") return "non disponibile";
-      else return `${dayjs(lastDate).format("DD/MM/YYYY")} alle ${dayjs(lastDate).format("HH:mm:ss")}`
+      if(lastDate === "") return " non disponibile";
+      else return `: ${dayjs(lastDate).format("DD/MM/YYYY")} alle ${dayjs(lastDate).format("HH:mm:ss")}`
     },
 
     /* ========{Funzioni ausiliarie}======== */

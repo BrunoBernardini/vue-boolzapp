@@ -299,6 +299,15 @@ body{
   color: gray;
 }
 
+.container .body .mainChat .messages .message .dropdown-btn{
+  transition: transform .1s linear;
+}
+
+.container .body .mainChat .messages .message .dropdown-btn.active{
+  transform: rotate(180deg);
+  color: gray;
+}
+
 .container .body .mainChat .messages .message:hover .dropdown-menu{
   opacity: 1;
   animation: dropdown-btn-in .15s linear;
@@ -333,8 +342,22 @@ body{
 }
 
 .dropdown-menu .dropdown-box .menu-option{
+  display: flex;
+  justify-content: space-between;
   padding: 5px 10px;
   color: black;
+}
+
+.dropdown-menu .dropdown-box .menu-option span{
+  margin-right: 40px;
+}
+
+.dropdown-menu .dropdown-box .menu-option.delete{
+  color: red;
+}
+
+.dropdown-menu .dropdown-box .menu-option i{
+  font-size: 15px;
 }
 
 .dropdown-menu .dropdown-box .menu-option:hover{
@@ -367,10 +390,12 @@ body{
 .container .body .mainChat .keyboard .side-btn i{
   color: gray;
   cursor: pointer;
+  transition: transform .1s linear;
 }
 
 .container .body .mainChat .keyboard .side-btn i:hover{
   color: rgb(90, 90, 90);
+  transform: scale(1.3);
 }
 
 .container .body .mainChat .keyboard .side-btn.emoji-btn .emoji-tab{
@@ -399,6 +424,14 @@ body{
 
 .container .body .mainChat .keyboard .side-btn.emoji-btn .emoji-tab .emoji:hover{
   background-color: lightgray;
+}
+
+.container .body .mainChat .keyboard .side-btn.emoji-btn .emoji-tab .emoji span{
+  transition: transform .1s linear;
+}
+
+.container .body .mainChat .keyboard .side-btn.emoji-btn .emoji-tab .emoji:hover span{
+  transform: scale(1.3);
 }
 
 .container .body .mainChat .keyboard input{
